@@ -33,12 +33,14 @@ class App extends Component {
   }
   handleLogout = async event => {
     await Auth.signOut();
-    
+    console.log("teste2");
     this.userHasAuthenticated(false);
   }
-  changePassword = event => {
+  changePasswordCurrentUser = event => {
+    console.log("testefds");
     Auth.currentAuthenticatedUser()
     .then(user => {
+        console.log("teste");
         return Auth.changePassword(user, 'abc123456', 'abcd12345');
     })
     .then(data => console.log(data))
@@ -65,7 +67,7 @@ class App extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
           <Nav pullRight>
-            {this.state.isAuthenticated ? <NavItem onClick={this.changePassword}>Logout</NavItem> : <Fragment>
+            {this.state.isAuthenticated ? <NavItem onClick={this.changePasswordCurrentUser}>Logout</NavItem> : <Fragment>
                 <LinkContainer to="/signup">
                 <NavItem>Signup</NavItem>
                 </LinkContainer>
